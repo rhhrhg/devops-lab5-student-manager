@@ -5,6 +5,19 @@ Module: Main Application
 from student import Student
 
 
+def add_student(students: list, student_id: str, name: str, age: int, grade: str) -> list:
+    """Thêm sinh viên mới vào danh sách."""
+    for s in students:
+        if s.student_id == student_id:
+            print(f"Mã sinh viên {student_id} đã tồn tại!")
+            return students
+
+    new_student = Student(student_id, name, age, grade)
+    students.append(new_student)
+    print(f"Đã thêm sinh viên: {new_student}")
+    return students
+
+
 def search_student(students: list, keyword: str) -> list:
     """Tìm kiếm sinh viên theo tên hoặc mã."""
     results = []
@@ -35,6 +48,8 @@ def main():
         Student("SV002", "Tran Thi B", 21, "K20"),
         Student("SV003", "Le Van C", 19, "K21"),
     ]
+
+    students = add_student(students, "SV004", "Pham Thi D", 22, "K19")
 
     for student in students:
         print(f"  {student}")
